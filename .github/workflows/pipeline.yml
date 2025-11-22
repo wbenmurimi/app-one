@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-scan-push:
-    uses: wbenmurimi/gitops/.github/workflows/build-push.yml
+    uses: wbenmurimi/gitops/.github/workflows/build-push.yml@main
     with:
       docker_image_name: 'app-one'
       dockerfile_path: './Dockerfile'

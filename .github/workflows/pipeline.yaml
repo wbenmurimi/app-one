@@ -1,0 +1,22 @@
+name: Build and Deploy Application
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - uat
+      - develop
+
+jobs:
+  build-scan-push:
+    uses: wbenmurimi/gitops/.github/workflows/build-push.yml
+    with:
+      docker_image_name: 'app-one'
+      dockerfile_path: './Dockerfile'
+      critical_threshold: ${{ vars.CRITICAL_VULNERABILITY_THRESHOLD }}
+      high_threshold: ${{ vars.HIGH_VULNERABILITY_THRESHOLD }}
+    secrets:
+      PUSH_GITHUB_USER: ${{ secrets.PUSH_GITHUB_USER }}
+      PUSH_GITHUB_TOKEN: ${{ secrets.PUSH_GITHUB_TOKEN }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
